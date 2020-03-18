@@ -12,6 +12,8 @@ import logging
 
 class Dictionary(object):
     def __init__(self, path):
+        """ parameters::
+        path is the path to test file gold file (indices of words to evaluate)"""
         self.word2idx = {}
         self.idx2word = []
         self.word2freq = defaultdict(int)
@@ -22,6 +24,7 @@ class Dictionary(object):
             self.word2idx = {w: i for i, w in enumerate(vocab.split())}
             self.idx2word = [w for w in vocab.split()]
             self.vocab_file_exists = True
+        
         except FileNotFoundError:
             logging.info("Vocab file not found, creating new vocab file.")
             self.create_vocab(os.path.join(path, 'train.txt'))
